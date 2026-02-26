@@ -53,7 +53,7 @@ def load_requests(filename):
     return requests
 
 # Sim one server
-def simulateoneServer(filename):
+def simulateOneServer(filename):
     requests = load_requests(filename)
     server = Server()
     request_queue = Queue()
@@ -79,7 +79,7 @@ def simulateoneServer(filename):
     return average_wait
 
 # Sim many servers
-def simulatemanyServers(filename, num_servers):
+def simulateManyServers(filename, num_servers):
     requests = load_requests(filename)
     servers = [Server() for _ in range(num_servers)]
     queues = [Queue() for _ in range(num_servers)]
@@ -114,9 +114,9 @@ def main():
     args = parser.parse_args()
 
     if args.servers:
-        simulatemanyServers(args.file, args.servers)
+        simulateManyServers(args.file, args.servers)
     else:
-        simulateoneServer(args.file)
+        simulateOneServer(args.file)
 
 main()
 
@@ -126,3 +126,4 @@ main()
 # This shows that even a small increase in servers dramatically reduces latency.
 # To address this we could use an alternative to round-robin like least connection load balancing which is an algorithm where client requests are 
 # distributed to the application server with the least number of active connections at the time the client request is received
+
